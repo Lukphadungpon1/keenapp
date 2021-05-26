@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: "Keen (Thailand) Ltd.",
+        title: "Keen (Thailand) Ltd. ",
         theme: ThemeData(
           primarySwatch: Colors.yellow,
         ),
