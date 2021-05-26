@@ -106,8 +106,10 @@ class _prapprovedACScreenState extends State<prapprovedACScreen> {
       print(_status);
       if (_status == "Approved" ||
           _status == '"Wait For PO"' ||
-          _status == '"OK"') {
+          _status == '"OK"' ||
+          _status == '"Request For Verification"') {
         String statusemail = "approve";
+
         if (_status == '"OK"') {
           statusemail = "notApprovePR";
         }
@@ -124,7 +126,8 @@ class _prapprovedACScreenState extends State<prapprovedACScreen> {
 
       if (_status == '"Approved"' ||
           _status == '"Wait For PO"' ||
-          _status == '"OK"') {
+          _status == '"OK"' ||
+          _status == '"Request For Verification"') {
         print(_status);
         showstatusApprove();
         Timer(

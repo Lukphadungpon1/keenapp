@@ -128,11 +128,13 @@ class _prDetailScreenState extends State<prDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     for (var i = 0; i < value.length; i++)
-                      FlatButton(
+                      OutlineButton(
                         onPressed: () {
                           _luancherInBrowser(value[i]);
                         },
-                        child: Text('${types} : ${i + 1}'),
+                        child: Text('Click >>  ${types} ${i + 1}'),
+                        borderSide: BorderSide(color: Colors.blue),
+                        shape: StadiumBorder(),
                       )
                   ],
                 ),
@@ -818,6 +820,10 @@ class _prDetailScreenState extends State<prDetailScreen> {
   }
 
   Widget subtotal(PrApproveList _dataPR) {
+    String Currency = "";
+    _dataPR.details.forEach((element) {
+      Currency = element.currency;
+    });
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -830,23 +836,51 @@ class _prDetailScreenState extends State<prDetailScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Total : ',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                '${NumberFormat("#,###.##").format(double.parse(_dataPR.total.toString())) ?? "0"}',
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline,
-                  decorationStyle: TextDecorationStyle.solid,
+              Container(
+                  child: Row(
+                children: [
+                  Text(
+                    'Currency : ',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '${Currency}',
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                      decorationStyle: TextDecorationStyle.solid,
+                    ),
+                  ),
+                ],
+              )),
+              Container(
+                child: Row(
+                  children: [
+                    Text(
+                      'Total : ',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '${NumberFormat("#,###.##").format(double.parse(_dataPR.total.toString())) ?? "0"}',
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.solid,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
